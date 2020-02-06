@@ -14,7 +14,10 @@ do {
     //$myTask = fopen('','r');
 
     //print($myTask);
-    array_push($myTasks,$myTask);
+    if($myTask != ""){
+        array_push($myTasks,$myTask);
+    }
+
     //print("\n");
 
 }while($myTask != "");
