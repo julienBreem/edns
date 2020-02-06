@@ -1,12 +1,24 @@
 <?php
 
-require_once($basedir. './../../Model/Entity/Task.php');
-namespace  \Controller\CLI;
-class taskmanager
-{
-    var $Taskarray[];
+    require_once('./../../Model/Entity/Task.php');
+    use edns\Model\Entity\Task as Taskentity;
 
-    public static setnewtask($input){
+    class taskmanager
+    {
+        public var $count;
+        public var $Taskarray;
+
+        public function __construct(){
+            //$this->Taskarray[] = new Taskentity();
+            $this.count == 0;
+        }
+
+        public function setnewtask($input){
         //
-    }
+        }
+
+        public function outputTasks(){
+
+        }
+
 }
