@@ -36,7 +36,8 @@ function showTasks($tasks){
         print(" => ");
         print($task);
         print("\n");
-    }}
+    }
+}
 
 
 
