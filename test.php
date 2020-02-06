@@ -7,5 +7,8 @@
  */
 
 do {
-    system.out.println("Enter a task");
-}while(true);
+    //print("Enter a task");
+    $myTask = readline("Enter a task : ");
+    //$myTask = fopen('','r');
+    print($myTask);
+}while(false);
