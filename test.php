@@ -22,7 +22,9 @@ do {
 
 }while($myTask != "");
 
-foreach ($myTasks as $task) {
+foreach ($myTasks as $key => $task) {
+    print($key);
+    print(" => ");
     print($task);
     print("\n");
 }
@@ -35,7 +37,9 @@ while($delete === "y"){
 
     print("\n");
 
-    foreach ($myTasks as $task) {
+    foreach ($myTasks as $key => $task) {
+        print($key);
+        print(" => ");
         print($task);
         print("\n");
     }
