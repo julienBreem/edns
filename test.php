@@ -23,3 +23,14 @@ foreach ($myTasks as $task) {
     print($task);
     print("\n");
 }
+
+$id = readline("which one do you want to remove ? ");
+print($id);
+unset($myTasks[$id]);
+
+print("\n");
+
+foreach ($myTasks as $task) {
+        print($task);
+        print("\n");
+}
