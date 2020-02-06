@@ -27,13 +27,22 @@ foreach ($myTasks as $task) {
     print("\n");
 }
 
-$id = readline("which one do you want to remove ? ");
-print($id);
-unset($myTasks[$id]);
+$delete = readline("do you want to delete a task ? (y/n)");
 
-print("\n");
+while($delete === "y"){
+    $id = readline("which one do you want to remove ? (number of the task)");
+    unset($myTasks[$id]);
 
-foreach ($myTasks as $task) {
+    print("\n");
+
+    foreach ($myTasks as $task) {
         print($task);
         print("\n");
+    }
+
+    $delete = readline("do you want to delete a task again ? (y/n)");
+
 }
+
+
+
