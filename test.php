@@ -11,4 +11,5 @@ do {
     $myTask = readline("Enter a task : ");
     //$myTask = fopen('','r');
     print($myTask);
-}while(false);
+    print("\n");
+}while($myTask != "");
