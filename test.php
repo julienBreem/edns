@@ -13,9 +13,9 @@ do {
     $myTask = readline("Enter a task : ");
     //$myTask = fopen('','r');
 
-    print($myTask);
+    //print($myTask);
     array_push($myTasks,$myTask);
-    print("\n");
+    //print("\n");
 
 }while($myTask != "");
 
