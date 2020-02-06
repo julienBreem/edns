@@ -1,6 +1,6 @@
 <?php
 
-namespace edns\Model\Entity;
+namespace edns\Model\Entity\Task;
 
 /**
  * Class Task
@@ -33,6 +33,13 @@ class Task
     /**
      * @return mixed
      */
+    public function __construct($count)  //provide the current id that should be provided depending on the amount of tasks already entered
+    {
+        $this->setTaskid($count);
+
+    }
+
+
     public function getTaskid() : ?int
     {
         return $this->taskid;
