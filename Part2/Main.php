@@ -26,13 +26,37 @@ if(isset($_POST['ajouter']) and isset($_POST['nom'])) //test si on a cliquer sur
         unset($item);
     }
 }
-elseif (isset($_GET['del']))
+
+elseif(isset($_GET['up'])) //Recuperation item a updater -> enregistrement de celui ci en session
+{
+    $itemAUpdater = $manager->getItem($_GET['up']);
+    $_SESSION['itemAUpdater'] = $itemAUpdater;
+    header('location: Main.php');
+}
+elseif (isset($_GET['del'])) //test pour delete item
 {
     $itemADel = $manager->getItem($_GET['del']);
     $manager->deleteItem($itemADel);
     header('location: Main.php');
 }
+elseif (isset($_POST['upd'])and isset($_POST['nom'])) //Recuperation du nom du nouveau item -> modification du nom de l'ancien + update bdd
+{
+    $itemAUpdater = $_SESSION['itemAUpdater'];
+    $itemAUpdater->setNom($_POST['nom']);
+    if($itemAUpdater->nomValide())
+    {
+        $manager->updateItem($itemAUpdater);
+    }
+    else
+    {
+        unset($itemAUpdater);
+    }
 
+
+    session_destroy();
+    header('location: Main.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -91,16 +115,26 @@ if(isset($message))
     ?>
 </fieldset>
 <?php
-
-if(isset($_GET['ajout'])or empty($listItem))
+if(isset($_GET['ajout'])or empty($listItem) or isset($_SESSION['itemAUpdater']))
 {
     ?>
 
     <form action="" method="post">
         <p>
             Nom : <input type="text" name="nom" maxlength="50" />
+            <?php if(isset($_GET['ajout'])or empty($listItem))
+            {?>
                 <input type="submit" value="Ajouter un item" name="ajouter" />
+                <?php
+            }
+            elseif (isset($_SESSION['itemAUpdater']))
+            {?>
                 <input type="submit" value="Update un item" name="upd" />
+                <?php
+            }
+            ?>
+
+
         </p>
     </form>
 
