@@ -1,11 +1,24 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jbreem
- * Date: 06/02/2020
- * Time: 21:45
- */
 
-echo "sa fonctionne ?";
-echo "sa fonctionne, ici ?";
-echo "sa fonctionne, toujours ?";
+
+<html>
+    <body>
+
+    <?php
+
+    $myTasks = array ();
+
+    ?>
+
+    <form action="" method="post">
+        task : <input type="text" name="task"><br>
+       <input type="submit">
+    </form>
+
+    <?php
+
+    echo $_POST["task"];
+
+    ?>
+
+    </body>
+</html>
