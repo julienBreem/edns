@@ -26,6 +26,12 @@ if(isset($_POST['ajouter']) and isset($_POST['nom'])) //test si on a cliquer sur
         unset($item);
     }
 }
+elseif (isset($_GET['del']))
+{
+    $itemADel = $manager->getItem($_GET['del']);
+    $manager->deleteItem($itemADel);
+    header('location: Main.php');
+}
 
 ?>
 
@@ -59,10 +65,28 @@ if(isset($message))
     }
     else
     {
+        if(isset($_GET['delete']))
+        {
+            foreach ($listItem as $unItem)
+            {
+                echo '<a href="?del=' . $unItem->getId() . '">'  . $unItem->getNom() . '</a> (date : ' . $unItem->getDate() . ')<br/>';
+            }
+        }
+        elseif(isset($_GET['update']))
+        {
+            foreach ($listItem as $unItem)
+            {
+                echo '<a href="?up=' . $unItem->getId() . '">'  . $unItem->getNom() . '</a> (date : ' . $unItem->getDate() . ')<br/>';
+            }
+        }
+        else
+        {
             foreach ($listItem as $unItem)
             {
                 echo $unItem->getNom() . ' (date : ' . $unItem->getDate() . ')<br/>';
             }
+        }
+
     }
     ?>
 </fieldset>
