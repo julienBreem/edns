@@ -1,1 +1,66 @@
 <?php
+function chargerClasse($classe)
+{
+    require $classe . '.php';
+}
+
+spl_autoload_register('chargerClasse');
+
+session_start();
+
+$db = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+$manager = new ManagerItem($db);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste items</title>
+
+    <meta charset="utf-8" />
+</head>
+<body>
+
+
+<a href="?ajout=oui"><strong>Ajouter un nouveau item ?</strong> </a> <br/>
+<a href="?delete=oui"><strong>Supprimer un item ?</strong></a> <br/>
+<a href="?update=oui"><strong>Modifier un item ?</strong></a> <br/>
+
+
+<fieldset>
+    <legend>Liste d'item</legend>
+    <?php
+    $listItem = $manager->getListItem();
+    if(empty($listItem))
+    {
+        echo 'Aucun item enregistré. Veuillé en rajouter';
+    }
+    else
+    {
+            foreach ($listItem as $unItem)
+            {
+                echo $unItem->getNom() . ' (date : ' . $unItem->getDate() . ')<br/>';
+            }
+    }
+    ?>
+</fieldset>
+<?php
+
+if(isset($_GET['ajout'])or empty($listItem))
+{
+    ?>
+
+    <form action="" method="post">
+        <p>
+            Nom : <input type="text" name="nom" maxlength="50" />
+                <input type="submit" value="Ajouter un item" name="ajouter" />
+                <input type="submit" value="Update un item" name="upd" />
+        </p>
+    </form>
+
+    <?php
+}
+?>
+
+</body>
+</html>
