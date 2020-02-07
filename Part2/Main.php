@@ -10,6 +10,23 @@ session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 $manager = new ManagerItem($db);
+
+if(isset($_POST['ajouter']) and isset($_POST['nom'])) //test si on a cliquer sur ajouter
+{
+    $item = new Item(['nom' => $_POST['nom']]);
+
+    if($item->nomValide())
+    {
+        $manager->addItem($item);
+        header('location: Main.php');
+    }
+    else
+    {
+        $message = 'Le nom choisi est invalide.';
+        unset($item);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +38,11 @@ $manager = new ManagerItem($db);
 </head>
 <body>
 
+<?php
+if(isset($message))
+{
+    echo '<p>' . $message .'</p>';
+}?>
 
 <a href="?ajout=oui"><strong>Ajouter un nouveau item ?</strong> </a> <br/>
 <a href="?delete=oui"><strong>Supprimer un item ?</strong></a> <br/>
